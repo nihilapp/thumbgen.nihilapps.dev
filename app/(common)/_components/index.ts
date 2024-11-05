@@ -32,3 +32,5 @@ export {
 } from './ColorInputContainer';
 export { RGBInputControl } from './RGBInputControl';
 export { HEXCodeText } from './HEXCodeText';
+export { PatternSwatchContainer } from './PatternSwatchContainer';
+export { PatternSwatch } from './PatternSwatch';

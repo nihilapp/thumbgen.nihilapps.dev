@@ -11,7 +11,9 @@ import {
   Select,
   RGBInputControl,
   RGBLabel,
-  HEXCodeText
+  HEXCodeText,
+  PatternSwatchContainer,
+  PatternSwatch
 } from '@/app/(common)/_components';
 import { ConfigSection } from '@/app/(common)/_components/ConfigSection';
 import { useThumbnailState } from '@/src/hooks/useThumbnailState';
@@ -279,6 +281,16 @@ export function Home() {
                     />
                   ))}
                 </ColorSwatchContainer>
+              </ConfigItem>
+            </ConfigRow>
+            <ConfigRow>
+              <ConfigItem>
+                <Label htmlFor='pattern'>패턴 선택</Label>
+                <PatternSwatchContainer>
+                  <PatternSwatch pattern='none' />
+                  <PatternSwatch pattern='pattern1' />
+                  <PatternSwatch pattern='pattern2' />
+                </PatternSwatchContainer>
               </ConfigItem>
             </ConfigRow>
           </ConfigSection>

@@ -1,8 +1,8 @@
 import { NextRequest } from 'next/server';
 import { cookies } from 'next/headers';
 import { createResponse, serverTools } from '../../_libs';
-import { DB } from '@/app/_libs';
-import { SessionCookie, SignOutDto } from '@/app/_types';
+import { DB } from '@/_libs';
+import { SessionCookie, SignOutDto } from '@/_types';
 
 interface Params {
   params: Promise<{

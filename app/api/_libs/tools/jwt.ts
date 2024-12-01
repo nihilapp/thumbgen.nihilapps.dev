@@ -3,9 +3,9 @@ import { jwtVerify, SignJWT } from 'jose';
 import { cookies } from 'next/headers';
 import {
   CreateToken, TokenInfo, TokenMode
-} from '@/app/_types';
+} from '@/_types';
 import { serverTools } from '.';
-import { DB } from '@/app/_libs';
+import { DB } from '@/_libs';
 
 export class Jwt {
   // 시크릿 키 설정

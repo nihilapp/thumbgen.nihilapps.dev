@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
-import { SignInDto } from '@/app/_types';
-import { DB } from '@/app/_libs';
+import { SignInDto } from '@/_types';
+import { DB } from '@/_libs';
 import { createResponse, serverTools } from '../../_libs';
 
 export async function POST(req: NextRequest) {

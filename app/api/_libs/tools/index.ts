@@ -1,6 +1,6 @@
-import { tools, type Tools } from '@/app/_libs';
-import { Bcrypt } from '@/app/api/_libs/tools/bcrypt';
-import { Jwt } from '@/app/api/_libs/tools/jwt';
+import { tools, type Tools } from '@/_libs';
+import { Bcrypt } from '@/api/_libs/tools/bcrypt';
+import { Jwt } from '@/api/_libs/tools/jwt';
 
 interface ServerTools extends Tools {
   bcrypt?: Bcrypt;

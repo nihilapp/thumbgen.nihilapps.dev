@@ -1,8 +1,8 @@
 import { NextRequest } from 'next/server.js';
 import { User } from '@prisma/client';
-import { DB } from '@/app/_libs';
-import { createDeleteCode, createResponse, serverTools } from '@/app/api/_libs';
-import { CreateUserDto, DeleteUsersDto } from '@/app/_types';
+import { DB } from '@/_libs';
+import { createDeleteCode, createResponse, serverTools } from '@/api/_libs';
+import { CreateUserDto, DeleteUsersDto } from '@/_types';
 
 export async function GET() {
   const users = await DB.users().findMany({});

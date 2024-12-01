@@ -1,8 +1,8 @@
 import { NextRequest } from 'next/server';
 import { User } from '@prisma/client';
-import { DB } from '@/app/_libs';
-import { createResponse, serverTools } from '@/app/api/_libs';
-import { DeleteUserDto, UpdateUserDto } from '@/app/_types';
+import { DB } from '@/_libs';
+import { createResponse, serverTools } from '@/api/_libs';
+import { DeleteUserDto, UpdateUserDto } from '@/_types';
 
 interface Params {
   params: Promise<{

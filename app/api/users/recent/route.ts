@@ -1,6 +1,6 @@
 import { User } from '@prisma/client';
-import { DB } from '@/app/_libs';
-import { createResponse } from '@/app/api/_libs';
+import { DB } from '@/_libs';
+import { createResponse } from '@/api/_libs';
 
 export async function GET() {
   const users = await DB.users().findMany({

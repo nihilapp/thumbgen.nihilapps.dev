@@ -1,2 +1,1 @@
-export { useUsersStore } from './useUsersStore';
-export { useCommonStore } from './useCommonStore';
+export { useThumbnailState } from './useThumbnailState';

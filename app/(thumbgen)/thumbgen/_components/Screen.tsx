@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
-import { useThumbnailState } from '@/_hooks/recoil';
+import { thumbnailStore } from '@/_entities';
 
 interface Props {
-  children?: React.ReactNode;
+  canvasRef: React.RefObject<HTMLCanvasElement>;
 }
 
 const Screen = styled.canvas`
@@ -15,12 +15,20 @@ const Screen = styled.canvas`
   aspect-ratio: 16 / 9;
 `;
 
-export function ThumbgenScreen({ children, }: Props) {
-  const state = useThumbnailState();
+export function ThumbgenScreen({ canvasRef, }: Props) {
+  const state = thumbnailStore();
 
   useEffect(() => {
     drawCanvas();
-  }, [ state.title, state.seriesNumber, state.subtitle, state.bgColor, state.textColor, state.titleFontSize, state.subtitleFontSize, ]);
+  }, [
+    state.title,
+    state.seriesNumber,
+    state.subtitle,
+    state.bgColor,
+    state.textColor,
+    state.titleFontSize,
+    state.subtitleFontSize,
+  ]);
 
   const drawCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -61,9 +69,15 @@ export function ThumbgenScreen({ children, }: Props) {
       ctx.font = `bold ${titleFontSizePx}px 'Noto Sans CJK KR', sans-serif`;
       ctx.fillText(displayTitle, centerX, centerY);
     }
-  }, []);
-
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  }, [
+    state.bgColor,
+    state.textColor,
+    state.title,
+    state.seriesNumber,
+    state.subtitle,
+    state.titleFontSize,
+    state.subtitleFontSize,
+  ]);
 
   return (
     <Screen ref={canvasRef} />

@@ -12,6 +12,7 @@ const Main = styled.main`
   padding-top: ${size.normal[5]};
   width: 1282px;
   margin: 0 auto;
+  font-size: ${size.text.md};
 `;
 
 export default function layout({ children, }: Props) {

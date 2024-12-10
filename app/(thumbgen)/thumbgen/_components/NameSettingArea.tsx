@@ -55,9 +55,11 @@ export function NameSettingArea() {
         <Label className='flex-1'>
           <LabelTitle>확장자</LabelTitle>
           <Select
+            direction='row'
             data={[ 'png', 'jpg', ]}
             state={fileExtension}
             setState={setFileExtension}
+            id='fileExtension'
           />
         </Label>
       </RowFlex>

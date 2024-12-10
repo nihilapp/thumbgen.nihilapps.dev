@@ -4,17 +4,13 @@ import React, { useCallback } from 'react';
 import {
   ColFlex, ColorPreview, Input, Label, LabelTitle, RowFlex
 } from './thumbgen.styled';
-import { thumbnailStore, type ThumbnailState } from '@/_entities';
+import { thumbnailStore } from '@/_entities';
 import { RGBInput } from './RGBInput';
 import { HexSelector } from './HexSelector';
 
-interface Props {
-  children?: React.ReactNode;
-}
-
-export function ColorSettingArea({ children, }: Props) {
+export function ColorSettingArea() {
   const {
-    bgColor, setBgColor, textColor, setTextColor, setIsDisabled,
+    bgColor, setBgColor, textColor, setTextColor,
   } = thumbnailStore();
 
   const onChangeBgColor = useCallback(
@@ -29,40 +25,6 @@ export function ColorSettingArea({ children, }: Props) {
       setTextColor(`${e.target.value}`);
     },
     []
-  );
-
-  const setSelection = useCallback(
-    (
-      setColor: ThumbnailState['setBgColor'],
-      setIsDisabled: ThumbnailState['setIsDisabled']
-    ) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      const input = event.target;
-      let { value, } = input;
-      const selectionStart = input.selectionStart ?? 0;
-      const selectionEnd = input.selectionEnd ?? 0;
-
-      if (value.length < 7) {
-        setIsDisabled(true);
-      } else {
-        setIsDisabled(false);
-      }
-
-      requestAnimationFrame(() => {
-        setColor(value.slice(0, 7));
-        // input이 HTMLInputElement인지 확인 후 setSelectionRange 호출
-        if (input instanceof HTMLInputElement) {
-          setTimeout(() => {
-            input.setSelectionRange(selectionStart, selectionEnd);
-          }, 0);
-        }
-      });
-    },
-    []
-  );
-
-  const onChangeHexCode = useCallback(
-    setSelection(setBgColor, setIsDisabled),
-    [ setBgColor, setIsDisabled, ]
   );
 
   return (
@@ -97,17 +59,7 @@ export function ColorSettingArea({ children, }: Props) {
         </Label>
         <Label className='flex-1 shrink-0'>
           <LabelTitle>HEX</LabelTitle>
-          <span className='flex flex-row items-center flex-1 shrink-0'>
-            <span className='text-[200%] mr-1 -mt-2 font-900'>
-              #
-            </span>
-            <Input
-              type='text'
-              value={textColor.slice(1).toUpperCase()}
-              onChange={onChangeTextColor}
-              className='flex-1 shrink-0 min-w-0'
-            />
-          </span>
+          <HexSelector color={textColor} setColor={setTextColor} />
         </Label>
         <RGBInput color={textColor} setColor={setTextColor} />
       </RowFlex>

@@ -33,13 +33,16 @@ export function HexSelector({ color, setColor, }: Props) {
 
   return (
     <RowFlex className='!gap-1'>
+      <span className='font-900 text-h1 inline-flex items-center leading-none mb-1'>#</span>
       {hex.split('')
         .map((char, index) => (
           <Select
+            direction='column'
             key={tools.common.uuid()}
             data={HexMap}
             state={char.toUpperCase()}
             setState={(state) => setHex(state, index)}
+            id={`hex-${index}`}
           />
         ))}
     </RowFlex>

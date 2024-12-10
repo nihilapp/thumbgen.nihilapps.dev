@@ -31,4 +31,14 @@ export {
 
 export { ArrowIcon } from './ArrowIcon';
 
-export { AdBox } from './AdBox';
+export {
+  ModalBack,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  SaveButton,
+  CancelButton
+} from './modal.styled';
+
+export { HexPasteModal } from './HexPasteModal';

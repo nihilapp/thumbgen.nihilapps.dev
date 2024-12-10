@@ -3,9 +3,17 @@
 import styled from 'styled-components';
 import { color, size } from '@/_styles';
 
-export const Container = styled.div`
+interface ContainerProps {
+  $direction: 'row' | 'column';
+}
+
+export const Container = styled.div<ContainerProps>`
   user-select: none;
   min-width: 0;
+  ${({ $direction, }) => $direction === 'column' && `
+    flex: 1;
+    flex-shrink: 0;
+  `};
   position: relative;
 
   & svg {
@@ -25,16 +33,29 @@ export const Container = styled.div`
   }
 `;
 
-export const Selection = styled.div`
+interface SelectionProps {
+  $direction: 'row' | 'column';
+}
+
+export const Selection = styled.div<SelectionProps>`
   border: 1px solid ${color.black[200]};
   border-radius: ${size.normal[1]};
-  padding: ${size.normal[2]};
+
   outline: none;
   height: 50px;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${({ $direction, }) => $direction === 'row' && `
+    padding: ${size.normal[2]};
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  `};
+  ${({ $direction, }) => $direction === 'column' && `
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  `};
 `;
 
 export const List = styled.div`

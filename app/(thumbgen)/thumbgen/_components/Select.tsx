@@ -10,79 +10,96 @@ import { tools } from '@/_libs';
 import { ArrowIcon } from './ArrowIcon';
 
 interface Props {
+  direction: 'row' | 'column';
   data: any[];
   state: string;
   // eslint-disable-next-line no-unused-vars
   setState: (state: string, index?: number) => void;
+  id: string;
 }
 
 export function Select({
-  data, state, setState,
+  direction, data, state, setState, id,
 }: Props) {
   const [ listClassName, setListClassName, ] = useState('close');
   const divRef = useRef<HTMLDivElement>(null);
 
   const onClickOpen = useCallback(() => {
+    const customEvent = new CustomEvent('closeOtherSelects', {
+      detail: { currentId: id, },
+    });
+    document.dispatchEvent(customEvent);
+
     setListClassName((prev) => (prev === 'close' ? 'open' : 'close'));
-  }, []);
+  }, [ id, ]);
 
   const onClickState = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
       const { value, } = event.currentTarget.dataset;
       if (value) {
         setState(value);
-        setListClassName('close');
+        setTimeout(() => {
+          setListClassName('close');
+        }, 100);
       }
     },
-    []
+    [ setState, ]
   );
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
 
-      // data-type이 'select'인 요소를 클릭한 경우 무시
-      if (target.closest('[data-type="select"]')) {
-        return;
+      if (!divRef.current?.contains(target)) {
+        setListClassName('close');
       }
-
-      // 그 외의 영역 클릭시 리스트 닫기
-      setListClassName('close');
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    const handleCloseOtherSelects = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      if (customEvent.detail.currentId !== id) {
+        setListClassName('close');
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('closeOtherSelects', handleCloseOtherSelects);
+
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('closeOtherSelects', handleCloseOtherSelects);
     };
-  }, []);
+  }, [ id, ]);
 
   return (
-    <>
-      <Container className={listClassName}>
-        <Selection onClick={onClickOpen} ref={divRef}>
-          {state}
-          <ArrowIcon />
-        </Selection>
-        <List className={listClassName} data-type='select'>
-          {data.map(
-            (item) => (
-              <ListItem
-                key={tools.common.uuid()}
-                onClick={onClickState}
-                data-value={item}
-                data-type='select'
-                className={(
-                  state === item
-                    ? '!bg-black-base !border-black-base text-white'
-                    : ''
-                )}
-              >
-                {item}
-              </ListItem>
-            )
-          )}
-        </List>
-      </Container>
-    </>
+    <Container className={listClassName} $direction={direction}>
+      <Selection
+        onClick={onClickOpen}
+        ref={divRef}
+        $direction={direction}
+      >
+        {state}
+        <ArrowIcon />
+      </Selection>
+      <List
+        className={listClassName}
+        data-type='select'
+      >
+        {data.map((item) => (
+          <ListItem
+            key={tools.common.uuid()}
+            onClick={onClickState}
+            data-value={item}
+            className={
+              state === item
+                ? '!bg-black-base !border-black-base text-white'
+                : ''
+            }
+          >
+            {item}
+          </ListItem>
+        ))}
+      </List>
+    </Container>
   );
 }

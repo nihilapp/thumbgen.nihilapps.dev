@@ -42,3 +42,4 @@ export {
 } from './modal.styled';
 
 export { HexPasteModal } from './HexPasteModal';
+export { SmallButton } from './SmallButton';

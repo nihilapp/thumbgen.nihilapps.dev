@@ -9,6 +9,8 @@ import { RGBInput } from './RGBInput';
 import { HexSelector } from './HexSelector';
 import { HexPasteModal } from './HexPasteModal';
 import { SmallButton } from './SmallButton';
+import { bgColorData, textColorData } from '@/_data';
+import { ColorPannel } from './ColorPannel';
 
 export function ColorSettingArea() {
   const [ openTextHexModal, setOpenTextHexModal, ] = useState(false);
@@ -40,6 +42,14 @@ export function ColorSettingArea() {
     setOpenBgHexModal(true);
   };
 
+  const onClickBgColorPreview = (color: string) => {
+    setBgColor(color);
+  };
+
+  const onClickTextColorPreview = (color: string) => {
+    setTextColor(color);
+  };
+
   return (
     <>
       <ColFlex className='p-5 rounded-1 border border-black-200 mb-5'>
@@ -65,6 +75,15 @@ export function ColorSettingArea() {
           </SmallButton>
           <RGBInput color={bgColor} setColor={setBgColor} />
         </RowFlex>
+        <RowFlex className='!gap-2'>
+          {bgColorData.map((color) => (
+            <ColorPannel
+              key={color.color}
+              $color={color.color}
+              onClick={() => onClickBgColorPreview(color.color)}
+            />
+          ))}
+        </RowFlex>
         <RowFlex className='relative'>
           <Label className='flex-[2] shrink-0'>
             <LabelTitle>텍스트 색상</LabelTitle>
@@ -86,6 +105,15 @@ export function ColorSettingArea() {
             값 붙여넣기
           </SmallButton>
           <RGBInput color={textColor} setColor={setTextColor} />
+        </RowFlex>
+        <RowFlex className='!gap-2'>
+          {textColorData.map((color) => (
+            <ColorPannel
+              key={color.color}
+              $color={color.color}
+              onClick={() => onClickTextColorPreview(color.color)}
+            />
+          ))}
         </RowFlex>
       </ColFlex>
 

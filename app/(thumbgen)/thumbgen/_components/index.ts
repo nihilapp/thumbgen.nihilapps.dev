@@ -43,3 +43,15 @@ export {
 
 export { HexPasteModal } from './HexPasteModal';
 export { SmallButton } from './SmallButton';
+
+export { NumberInput } from './NumberInput';
+
+export {
+  HiddenNumberInput,
+  NumberVision,
+  NumberIncreaseButton,
+  NumberDecreaseButton,
+  NumberButtons
+} from './number-input.styled';
+
+export { ColorPannel } from './ColorPannel';

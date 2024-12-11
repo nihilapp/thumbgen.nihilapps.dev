@@ -81,4 +81,5 @@ export const ColorPreview = styled.div<ColorPreviewProps>`
   border-radius: ${size.normal[1]};
   height: 50px;
   background-color: ${({ $color, }) => $color};
+  cursor: pointer;
 `;

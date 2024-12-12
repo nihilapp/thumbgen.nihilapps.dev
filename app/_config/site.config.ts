@@ -1,9 +1,9 @@
 import { SiteConfig } from '@/_types/common.types';
 
 export const siteConfig: SiteConfig = {
-  title: '사이트 이름',
-  description: '사이트 설명',
-  keywords: '',
+  title: '썸네일 생성기',
+  description: '편리하게 블로그 썸네일을 생성하세요.',
+  keywords: '블로그,썸네일,blog,thumbnail',
   author: {
     name: 'NIHILncunia',
     url: 'https://github.com/NIHILncunia',
@@ -11,7 +11,7 @@ export const siteConfig: SiteConfig = {
   type: 'website',
   url: process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : '',
+    : 'https://thumbgen.nihilapps.dev',
   image: {
     link: '/opengraph-image.png',
     alt: 'site image',

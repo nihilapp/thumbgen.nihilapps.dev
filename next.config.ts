@@ -2,7 +2,6 @@ import { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   distDir: 'build',
-  basePath: '/thumbgen',
   reactStrictMode: false,
   compiler: {
     styledComponents: true,

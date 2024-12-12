@@ -1,6 +1,10 @@
 import { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  pageExtensions: [
+    'page.tsx',
+    'page.ts',
+  ],
   distDir: 'build',
   reactStrictMode: false,
   compiler: {

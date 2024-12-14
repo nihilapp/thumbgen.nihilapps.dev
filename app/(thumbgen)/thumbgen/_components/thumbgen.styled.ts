@@ -63,7 +63,7 @@ export const Button = styled.button`
   padding: ${size.normal[5]};
   border-radius: ${size.normal[1]};
   text-align: center;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   font-size: ${size.text.h3};
   font-weight: 900;
 

@@ -13,6 +13,7 @@ export interface ThumbnailState {
   titleFontSize: number;
   subtitleFontSize: number;
   isDisabled: boolean;
+  reset: () => void;
   // eslint-disable-next-line no-unused-vars
   setTitle: (title: string) => void;
   // eslint-disable-next-line no-unused-vars
@@ -46,6 +47,18 @@ export const thumbnailStore = create<ThumbnailState>((set) => ({
   titleFontSize: 4.75,
   subtitleFontSize: 3,
   isDisabled: false,
+  reset: () => set({
+    title: '블로그 제목',
+    seriesNumber: '',
+    subtitle: '',
+    bgColor: '#FFFFFF',
+    textColor: '#000000',
+    fileName: '블로그 제목',
+    fileExtension: 'png',
+    titleFontSize: 4.75,
+    subtitleFontSize: 3,
+    isDisabled: false,
+  }),
   setTitle: (title) => (
     set({
       title,

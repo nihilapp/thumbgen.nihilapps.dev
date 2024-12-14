@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
-import { Button, ScreenBox } from './thumbgen.styled';
+import { Button, RowFlex, ScreenBox } from './thumbgen.styled';
 import { ThumbgenScreen } from './Screen';
 import { TitleSettingArea } from './TitleSettingArea';
 import { ColorSettingArea } from './ColorSettingArea';
@@ -16,7 +16,7 @@ import {
 export function Thumbgen() {
   const [ open, setOpen, ] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { fileName, fileExtension, } = thumbnailStore();
+  const { fileName, fileExtension, reset, } = thumbnailStore();
 
   const onClickOpenModal = () => {
     setOpen(true);
@@ -46,6 +46,10 @@ export function Thumbgen() {
     setOpen(false);
   };
 
+  const onClickReset = () => {
+    reset();
+  };
+
   return (
     <>
       <ScreenBox>
@@ -56,12 +60,20 @@ export function Thumbgen() {
       <ColorSettingArea />
       <TextSizeSettingArea />
       <NameSettingArea />
-      <Button
-        className='mb-5'
-        onClick={onClickOpenModal}
-      >
-        썸네일 생성
-      </Button>
+
+      <RowFlex className='mb-5'>
+        <Button
+          onClick={onClickOpenModal}
+        >
+          썸네일 생성
+        </Button>
+        <Button
+          className='border-2 border-red-500 !bg-white !text-red-500 hover:!bg-red-500 hover:!text-white'
+          onClick={onClickReset}
+        >
+          초기화
+        </Button>
+      </RowFlex>
 
       {open && (
         <ModalBack onClick={onClickModalBack}>

@@ -12,8 +12,6 @@ interface Props {
 }
 
 export function RGBInput({ color, setColor, }: Props) {
-  console.log('color >> ', color);
-
   const [ red, green, blue, ] = useMemo(
     () => {
       if (!color) {

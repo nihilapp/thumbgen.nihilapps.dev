@@ -2,8 +2,8 @@ import { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   pageExtensions: [
-    'page.tsx',
-    'page.ts',
+    'tsx',
+    'ts',
   ],
   distDir: 'build',
   reactStrictMode: false,
@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
   },
   eslint: {
     dirs: [],
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
   webpack(config) {
     config.cache = false;

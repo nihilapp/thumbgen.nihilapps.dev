@@ -7,7 +7,6 @@ import { RowFlex } from './thumbgen.styled';
 
 interface Props {
   color: string;
-  // eslint-disable-next-line no-unused-vars
   setColor: (color: string) => void;
 }
 

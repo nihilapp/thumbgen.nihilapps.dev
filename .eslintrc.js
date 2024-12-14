@@ -33,7 +33,7 @@ module.exports = {
   rules: {
     // 일반 규칙
     'no-console': 'off',
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'off',
     'no-unexpected-multiline': 'off',
     'no-use-before-define': 'off',
     'spaced-comment': 'off',
@@ -93,7 +93,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
 
     // 리액트 규칙
     'react/jsx-curly-spacing': [ 'error', { when: 'never', children: true, }, ],

@@ -39,7 +39,6 @@
     ".next/types/**/*.ts",
     "**/*.d.ts",
     "build/types/**/*.ts",
-    "eslint.config.js"
   ],
   "exclude": [
     "node_modules"

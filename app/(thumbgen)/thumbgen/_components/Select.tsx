@@ -92,8 +92,8 @@ export function Select({
             data-value={item}
             className={
               state === item
-                ? '!bg-black-base !border-black-base text-white'
-                : ''
+                ? '!bg-black-base !border-white text-white'
+                : '!bg-white !text-black-base'
             }
           >
             {item}

@@ -66,6 +66,7 @@ export const List = styled.div`
   transition: height 0.3s ease-in-out, margin-top 0.3s ease-in-out;
   height: 0;
   overflow-y: scroll;
+  z-index: 10;
 
   &.close {
     height: 0 !important;

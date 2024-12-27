@@ -6,7 +6,7 @@ import { color, size } from '@/_styles';
 export const SmallButton = styled.button`
   display: inline-block;
   font-size: ${size.text.xs};
-  background-color: ${color.black.base};
+  background-color: ${color.black[600]};
   color: ${color.white};
   padding: ${size.normal[2]} ${size.normal[3]};
   border-radius: ${size.normal[1]};
@@ -15,7 +15,7 @@ export const SmallButton = styled.button`
   position: absolute;
   top: 0;
   right: 320px;
-  z-index: 10;
+  z-index: 5;
 
   &:hover {
     background-color: ${color.blue[500]};
